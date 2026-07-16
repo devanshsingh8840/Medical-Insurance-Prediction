@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Medical Insurance Cost Prediction</title>
+
+  <!-- CSS Link -->
+   <link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+}
+
+.container{
+    width:650px;
+    margin:60px auto;
+    background:white;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0px 5px 20px rgba(0,0,0,.15);
+}
+
+h1{
+    text-align:center;
+    color:#0d47a1;
+    margin-bottom:30px;
+}
+
+form{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+input,select{
+
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #bbb;
+    font-size:16px;
+}
+
+button{
+
+    grid-column:1/3;
+    padding:14px;
+    background:#1565c0;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+
+    background:#0d47a1;
+}
+
+.result{
+
+    margin-top:30px;
+    padding:15px;
+    background:#e8f5e9;
+    border-radius:8px;
+    text-align:center;
+    font-size:22px;
+    color:#2e7d32;
+    font-weight:bold;
+}
+
+.footer{
+
+    text-align:center;
+    margin-top:30px;
+    color:#555;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>🏥 Medical Insurance Cost Prediction</h1>
+
+<form action="/predict" method="POST">
+
+<input type="number"
+name="age"
+placeholder="Enter Age"
+required>
+
+<select name="sex">
+
+<option value="1">Male</option>
+<option value="0">Female</option>
+
+</select>
+
+<input type="number"
+step="0.1"
+name="bmi"
+placeholder="Enter BMI"
+required>
+
+<input type="number"
+name="children"
+placeholder="Number of Children"
+required>
+
+<select name="smoker">
+
+<option value="1">Yes</option>
+<option value="0">No</option>
+
+</select>
+
+<select name="region">
+
+<option value="0">Northeast</option>
+<option value="1">Northwest</option>
+<option value="2">Southeast</option>
+<option value="3">Southwest</option>
+
+</select>
+
+<button type="submit">
+Predict Insurance Cost
+</button>
+
+</form>
+
+{% if prediction_text %}
+
+<div class="result">
+
+{{ prediction_text }}
+
+</div>
+
+{% endif %}
+
+<div class="footer">
+
+Made by using Flask & Machine Learning
+
+</div>
+
+</div>
+
+</body>
+</html>
